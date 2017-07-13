@@ -96,7 +96,7 @@ Events are then reconstructed inside the TPC. Since we only want ACP tracks, we 
 \item horizonatl position (Z) of first and last hits within 2 and 86 cm from TPC front face (avoid throughoing tracks) 
 \item longest track with track lenght greater than 48 cm
 \item angle from the drift direction (phi in figure \ref{fig:AngleDef}) smaller than 50 deg 
-\item angle from the beam direction (theta in figure \ref{fig:AngleDef}) grater than 60 deg
+\item angle from the beam direction (theta in figure \ref{fig:AngleDef}) grater than 50 deg
 \end{itemize}
 
 
@@ -114,7 +114,7 @@ For each track passing our selection, we loop through the associated hits in ord
 Figure \ref{fig:RunIPosACP} represents the difference in time between the last and first hit of the selected ACP tracks for RunI Positive Polarity sample. The red histogram represents $\Delta$t calculated with hits on induction plan, while the blue histogram histogram represents $\Delta$t calculated with hits on the collection plan.
 Figure \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP} are analougus to figure \ref{fig:RunIPosACP} for RunII Positive and Negative polarity respectively.
 
-\begin{figure}[b]
+\begin{figure}[]
 \centering
 \begin{minipage}{0.45\textwidth}
 \centering
@@ -130,14 +130,14 @@ Figure \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP} are analougus to figure \
 \end{minipage}\hfill
 \begin{minipage}{0.45\textwidth}
 \centering
-\includegraphics[width=3in]{images/ACPRunIIPos.png}
+\includegraphics[width=3in]{images/ACPRunIINeg.png}
 \caption{$\Delta$t for Run II negative polarity data ACP selected tracks.  The blue line represents hits on the collection plan, red induction.}
 \label{fig:RunIINegACP}
 \end{minipage}
 \end{figure}
 
 We fit with a gaussian the peak in figures  \ref{fig:RunIPosACP}, \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP}. An example of the fit is shown in figures \ref{fig:CollFit} and \ref{fig:IndFit}. We use the mean as our estimate of $\Delta t$ and the sigma as it error. The $\Delta t$ value for each distribution is shown in table \ref{tab:deltaTACP}.
-\begin{figure}[b]
+\begin{figure}[]
 \centering
 \begin{minipage}{0.45\textwidth}
 \centering
@@ -157,22 +157,22 @@ We fit with a gaussian the peak in figures  \ref{fig:RunIPosACP}, \ref{fig:RunII
 \begin{table}[htb]
   \begin{center}
     %\resizebox{0.45\textwidth}{!}{%
-    \begin{tabular}{|c|c|}
-      \multicolumn{2}{c}{\textbf{Delta t for ACP tracks}} \\
+    \begin{tabular}{|c|c|c|c|}
+      \multicolumn{4}{c}{\textbf{Delta t, drift v and E field with ACP tracks}} \\
       \hline \hline
-       Data Period  & $\Delta t$ [$\mu s$] \\
+       Data Period  & $\Delta t$ [$\mu s$] & Drift velocity [mm/$\mu$s] & E field [V/cm] \\
        \hline
-       RunI Positive Polarity Induction & 313.7 $\pm$ 2.1 \\
+       RunI Positive Polarity Induction & 313.7 $\pm$ 2.1  & 1.498 & 475.90\\
        \hline
-       RunI Positive Polarity Collection & 313.2 $\pm$ 2.6 \\
+       RunI Positive Polarity Collection & 313.2 $\pm$ 2.6 & 1.500 & 477.93 \\
        \hline
-       RunII Positive Polarity Induction &  318.6 $\pm$ 2.5\\
+       RunII Positive Polarity Induction &  318.6 $\pm$ 2.5& 1.475 & 456.61 \\
        \hline
-       RunII Positive Polarity Collection & 318.2 $\pm$ 2.6 \\
+       RunII Positive Polarity Collection & 318.2 $\pm$ 2.6& 1.477 & 458.15 \\
        \hline
-       RunII Negative Polarity Induction &  $\pm$ \\
+       RunII Negative Polarity Induction &  317.8 $\pm$ 2.9& 1.479 & 459.68 \\
        \hline
-       RunII Negative Polarity Collection & $\pm$ \\
+       RunII Negative Polarity Collection & 317.1 $\pm$ 2.9 & 1.482 & 462.40 \\
        \hline
        \end{tabular}
     \caption{$\Delta t$ for the different data samples used for the Anode-Cathode Piercing tracks study. }
