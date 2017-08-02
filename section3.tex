@@ -1,4 +1,6 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{E field using cathode-anode piercing tracks}\label{sec:CAMethod}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[b]
 \centering
 \begin{minipage}{0.45\textwidth}
@@ -15,33 +17,31 @@
 \end{minipage}
 \end{figure}
 
-In this section, we propose a method to measure the drift time (and consequently drift velocity and electric field) using TPC data.
+In this section, we utilize a method to measure the drift time (and consequently drift velocity and electric field) using TPC cathode to anode piercing tracks.
 The basic idea is simple:
 \begin{itemize}
-\item[0.] select events with only 1 reconstruced track 
-\item[1.] select tracks that cross both anode and cathode,
-\item[2.] identify the first and last hit of the track,
-\item[3.] measure the time difference between these two hits ($\Delta t$),
-\item[4.] derive the drift time from this time difference.
+\item[0.] Select cosmic ray events with only 1 reconstructed track 
+\item[1.] Select tracks that cross both anode and cathode
+\item[2.] Identify the first and last hit of the track
+\item[3.] Measure the time difference between these two hits ($\Delta t$),
+\item[4.] Derive the drift time from this time difference using the fact that one time tick in TDC is 0.128 $\mu$s.
 \end{itemize}
-We use cosmic data (see section \ref{sec:SampleSelectionCA}) and work under the following assumptions: 
+This method works under the assumptions: 
 \begin{itemize}
-\item [A1.] the selected tracks are muons in the MIP region
-\item [A2.] the time it takes for a muon to cross the chamber ($\sim$ns) is irrelevant compared to the charge drift time ($\sim$ hundreds of $\mu$s).
+\item [A1.] the selected tracks are minimum ionizing tracks
+\item [A2.] the time it takes for a particle to cross the chamber ($\sim$ns) is small compared to the charge drift time ($\sim$ hundreds of $\mu$s).
 \end{itemize}
 
-We select events with only one recontructed track to assure the track considered in the analysis is associated with the trigger.
-We select anode-cahode piercing tracks (ACP tracks in what follows) because their hits span the full drift lenght of the TPC, see figure \ref{fig:Scheme}. It is important to define where the first and last hit of the tracks are located. The definition of the last hit is easy: it is the hit closest to the cathode. The definition of the first hit is a bit more complicated. A track that crosses the anode planes will deposit charge in the small drift volumes (CI and IS). We calculated the dift time in IS and CI in table \ref{tab:Efields}: $\Delta t_{IS} = 2.31  \mu s$  and $\Delta t_{CI} = 2.11 \mu s $ respectvely. This is to say that the position of the first hit  matters when calculating the drift time at the microsecond precision.
-Single hits on the collection plan will not form a 3D object. This means that we can safely exclude that the reconstruction of ACP tracks starts at the cathode plane (black point in figure \ref{fig:Scheme}). Understanding if the first hit of a track in on the induction or on the shield plan is more complicated. For now, we'll take an uncertainty hit of 2.3 $\mu$s.
+We select events with only one reconstructed track to assure the track considered in the analysis is associated with the trigger and thus we know when the readout began. We utilize anode to cathode piercing tracks (ACP tracks) because their hits span the full drift length of the TPC, see figure \ref{fig:Scheme} and thus allows us define where the first and last hit of the tracks are located in space regardless of our assumption of the electric field. The definition of the last hit is easy: it is the hit closest to the cathode. The definition of the first hit is a bit more complicated. A track that crosses the anode planes will deposit charge in the small drift volumes (S-I and I-C). The drift time in S-I and I-C region was already calculated in Table \ref{tab:Efields}. This is to say that the position of the first hit matters when calculating the drift time at the microsecond precision.
+Single hits on the collection plan will not form a 3D object. This means that we can safely exclude that the reconstruction of ACP tracks starts at the cathode plane (black point in figure \ref{fig:Scheme}). %Understanding if the first hit of a track in on the induction or on the shield plan is more complicated. For now, we'll take an uncertainty hit of 2.3 $\mu$s.
 
 
 One of the main features of this method is that it doesn't rely on the measurement of the trigger time. Since $\Delta t$ is the time difference between the first and last hit of a track and we assume the charge started drifting at the same time for both hits (assumption A2), the measurement of the absolute beginning of drift time $t_0$ is unnecessary. 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Andode-Cathode Piercing Tracks Sample Selection}\label{sec:SampleSelectionCA}
 
-The data samples used for this measurement span RunI and RunII. The data are divided into three independent subsamples: RunI positive polarity data, RunII positive polarity data and RunII negative polarity data. Since we're interested in cosmics, this organization is arbirtary and only dictated by the subsamples availability.
-More details are shown in table \ref{tab:samples}, while the samweb definitions are defined at the end of \href{https://redmine.fnal.gov/redmine/projects/lardbt/wiki/Recommended_SAM_Datasets}{this wiki page}.
+The data samples used for this measurement span RunI and RunII. The data are divided into three independent subsamples: RunI positive polarity data, RunII positive polarity data and RunII negative polarity data. Since we're interested in cosmic data, this polarity of the magnet setting is arbitrary and only used to clearly define the data taking period. More details are shown in Table \ref{tab:samples}, while the samweb definitions are defined at the end of \href{https://redmine.fnal.gov/redmine/projects/lardbt/wiki/Recommended_SAM_Datasets}{this wiki page}.
 
 \begin{center}
 \begin{table}[htb]
@@ -65,7 +65,7 @@ More details are shown in table \ref{tab:samples}, while the samweb definitions 
 \end{table}
 \end{center}
 
-For each sample, the same event selection is used: we outline it in what follows.
+For each sample, the same event selection is used, outlined here:
 \begin{itemize}
 \item \textbf{Time Stamp Filter}
 
@@ -106,13 +106,13 @@ Events are then reconstructed inside the TPC. Since we only want ACP tracks, we 
 
 Tracks passing all these selection requirements are used for the $\Delta t$ calculation.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Hit timing information}\label{sec:HitTime}
-For each track passing our selection, we loop through the associated hits in order to retrieve the timing information. Hits on the collection and hits on the induction are treated separately. Three types of timing information are provided per each hit: tStart, tPeak and tEnd. The quantities tStart and tEnd are used to identify a region of interest on the signal wave form in each wire. This ROI is represent the time boundary where a fit for the signal peak is performed. The variable tPeak stores the fitted value for the time of the hit. For this analysis, we use \verb!gaushitfinder! and the variable tPeak as a measure of the hit time.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For each track passing our selection, we loop through the associated hits in order to retrieve the timing information. Hits on the collection plane and induction plane are treated separately. Three types of timing information are provided per each hit: tStart, tPeak and tEnd. The quantities tStart and tEnd are used to identify a region of interest on the signal wave form in each wire. This ROI is represent the time boundary where a fit for the signal peak is performed. The variable tPeak stores the fitted value for the time of the hit. For this analysis, we use \verb!Gaushitfinder! and the variable tPeak as a measure of the hit time.
 
 
-Figure \ref{fig:RunIPosACP} represents the difference in time between the last and first hit of the selected ACP tracks for RunI Positive Polarity sample. The red histogram represents $\Delta$t calculated with hits on induction plan, while the blue histogram histogram represents $\Delta$t calculated with hits on the collection plan.
-Figure \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP} are analougus to figure \ref{fig:RunIPosACP} for RunII Positive and Negative polarity respectively.
+Figure \ref{fig:RunIPosACP} represents the difference in time between the last and first hit of the selected ACP tracks for Run-I Positive Polarity sample. The red histogram represents $\Delta$t calculated with hits on induction plan, while the blue histogram histogram represents $\Delta$t calculated with hits on the collection plan. Figures \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP} are analogous and represent Run-II Positive and Negative polarity respectively.
 
 \begin{figure}[]
 \centering
@@ -136,8 +136,8 @@ Figure \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP} are analougus to figure \
 \end{minipage}
 \end{figure}
 
-We fit with a gaussian the peak in figures  \ref{fig:RunIPosACP}, \ref{fig:RunIIPosACP} and \ref{fig:RunIINegACP}. An example of the fit is shown in figures \ref{fig:CollFit} and \ref{fig:IndFit}. We use the mean as our estimate of $\Delta t$ and the sigma as it error. The $\Delta t$ value for each distribution is shown in table \ref{tab:deltaTACP}.
-\begin{figure}[]
+We fit with a Gaussian to the peak of the $\Delta t$ distributions to extract the mean drift time and the uncertainty associated with it. Examples of the fit is shown in Figures \ref{fig:CollFit} and \ref{fig:IndFit}.  
+\begin{figure}[h!]
 \centering
 \begin{minipage}{0.45\textwidth}
 \centering
@@ -153,6 +153,20 @@ We fit with a gaussian the peak in figures  \ref{fig:RunIPosACP}, \ref{fig:RunII
 \end{minipage}
 \end{figure}
 
+To convert $\Delta t$ recorded for the hits on the induction plane to the drift time you can utilize the formula
+\begin{equation}
+t_{drift} = \Delta t - t_{S-I}
+\end{equation}
+where $t_{drift}$ is the time the charge takes to drift in the main volume between the cathode and the shield plane and $t_{S-I}$ is the time it takes for the charge to drift from the shield plane to the induction plane. In Table \ref{tab:Efields} we calculated the drift velocity in the S-I region, thus we can calculate $t_{S-I}$ as 
+\begin{equation}
+t_{S-I} = \frac{l_{S-I}}{v_{S-I}} = \frac{4 mm}{1.745 mm/ \mu s}
+\end{equation}
+where $\l_{S-I}$ is the distance between the shield and induction plane and $v_{S-I}$ is the drift velocity in the same region.
+
+A completely analogous procedure is followed for the hits on the collection plane, taking into account the time the charge spent in drifting from shield to induction as well as between the induction and collection plane
+
+The $\Delta t$ value for each distribution is shown in Table \ref{tab:deltaTACP}.
+
 \begin{center}
 \begin{table}[htb]
   \begin{center}
@@ -162,17 +176,20 @@ We fit with a gaussian the peak in figures  \ref{fig:RunIPosACP}, \ref{fig:RunII
       \hline \hline
        Data Period  & $\Delta t$ [$\mu s$] & Drift velocity [mm/$\mu$s] & E field [V/cm] \\
        \hline
-       RunI Positive Polarity Induction & 313.7 $\pm$ 2.1  & 1.498 & 475.90\\
+       RunI Positive Polarity Induction &  $\pm$   &  & \\
        \hline
-       RunI Positive Polarity Collection & 313.2 $\pm$ 2.6 & 1.500 & 477.93 \\
+       RunI Positive Polarity Collection &  $\pm$  &  &  \\
        \hline
-       RunII Positive Polarity Induction &  318.6 $\pm$ 2.5& 1.475 & 456.61 \\
+       RunII Positive Polarity Induction &   $\pm$ &  &  \\
        \hline
-       RunII Positive Polarity Collection & 318.2 $\pm$ 2.6& 1.477 & 458.15 \\
+       RunII Positive Polarity Collection &  $\pm$ &  &  \\
        \hline
-       RunII Negative Polarity Induction &  317.8 $\pm$ 2.9& 1.479 & 459.68 \\
+       RunII Negative Polarity Induction &   $\pm$ &  &  \\
        \hline
-       RunII Negative Polarity Collection & 317.1 $\pm$ 2.9 & 1.482 & 462.40 \\
+       RunII Negative Polarity Collection &  $\pm$ &  &  \\
+       \hline
+       \hline
+       Average Values & & & \\
        \hline
        \end{tabular}
     \caption{$\Delta t$ for the different data samples used for the Anode-Cathode Piercing tracks study. }

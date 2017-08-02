@@ -1,18 +1,7 @@
-\section{E field using Michel electron sample}\label{sec:michelEl}
-In this section, we propose a different event selection and slightly different method to measure the drift time (and consequently drift velocity and electric field) using TPC data compared to section \ref{sec:CAMethod}.
-Since this method relies on a different way to select events and account for the starting time, it is subject to different sistematics wrt to the cathode-anode piercing track method and can be used as a cross-check.
-
-\subsection{Michel Electron Sample Selection}\label{sec:SampleSelectionME}
-The scope of the selection illustrated here is to select muons associated with the Michel electron trigger. 
-We start with a sample pre-selected by the Michel electron trigger. The sample spans run I. The Michel electron trigger requires the presence of two light pulses on the 2-inch PMT within a time window of 7.3 $\mu$s. The first pulse represents the light pulse associated with the muon, while the second pulse  represents the light pulse associated with the electron. Events are rejected if the second pulse occurs within 300 ns  after the first one, to avoid mis-matching the candidate muon pulse with itself.
-
-For the selected events, we identify the longest track. We require this track to be longer than 30 cm. In order to minimize the impact of reconstruction issues, we use only hits whose goodness of fit is greater is within 0.5 and 1.5 and whose multiplicity is 1.
-\textcolor{red}{I don't have plots for this, yet... but coming soon :) }
-%We plot the time of the selected hits separately for the collection and induction plans. 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}\label{sec:Results}
-The following table summarizes the results from the 3 methods described above.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The following table summarizes the results from the two methods described above.
 \begin{center}
 \begin{table}[htb]
   \begin{center}
@@ -21,17 +10,16 @@ The following table summarizes the results from the 3 methods described above.
       \hline \hline
        Method & Drift Time [$\mu$s] & Drift velocity [mm/$\mu$s]  & Electric field [V/cm]\\
        \hline
-       Electric circuit        &  & \\
+       Electric circuit        & 311.3  & 1.51 & 486.5 \\
        \hline
        Crossing Tracks: Run I  &  & \\
        \hline
        Crossing Tracks: Run II &  & \\
        \hline
-       Michel Electron: Run I  &  & \\
        \hline
        \end{tabular}%}
-    \caption{Summary of the data samples used for the Anode-Cathode Piercing tracks study. }
-    \label{tab:samples}
+    \caption{Summary of the results. }
+    \label{tab:ResultsFinal}
     \end{center}
 \end{table}
 \end{center}
