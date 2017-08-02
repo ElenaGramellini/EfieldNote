@@ -1,24 +1,20 @@
 \clearpage
 \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{E field using electrical diagram}\label{sec:elDiagram}
-The electric field in the LArIAT main drift volume can be determined knowing the voltage applied to the cathode, the voltage applied at the shield plane and the distance between t\
-hem. We assume the distance between the cathode and the shield plane to be 470 mm and the voltage applied to the shield plane to be -298.75 V. The only quantity left to dermine is\
- then the voltage applied at the cathode. We can derive this latest quantity by using ohm's laws on the ciruit shown in fig \ref{fig:circuit}. We want to calculate the voltage at \
-point B with respect to ground (point C). From ACNET readings, the volatge provided by the power supply is 23.5 kV and the glasmsman current reading is 0.0417 $\pm$ 0.015 mA (see \
-figure \ref{fig:currentMeasurement}). LArIAT is equipped with two 40 $M\Omega$ filter pots in series, which correspond to an equivalent resistor of 80 $M\Omega$. Thus, the voltage\
- at the cathode is:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The electric field in the LArIAT main drift volume can be determined knowing the voltage applied to the cathode, the voltage applied at the shield plane and the distance between them. We assume the distance between the cathode and the shield plane to be 470 mm and any length contraction due to the liquid argon is small ($\sim 2$mm).
 
-\begin{equation} V_{BC}=V_{PS} - I*R_{eq} = -23.5kV + 0.00417mA*80M\Omega = -23.17 kV, \label{eq:VBC}
-\end{equation}
-where I is the current and R$_{eq}$ is the equivalent resistor.
-The electric field, drift voltage and drift time are then calculated to be
+The voltage applied to the cathode can be calculated using Ohm's law on the circuit diagram shown in Figure \ref{fig:circuit}. The voltage supplied by the Glasman power supply during Run-I and Run-II was 23.5~kV. Sitting between the Glasman power supply and the cathode was a series of filter pots, each with an internal resistance of 40~M$\Omega$. 
 
-\begin{equation}E_{filed} = \frac{V_{BC} - V_{shield}}{\Delta x} = 486.54 \textit{ V/cm}
+Thus all that is needed is the current output by the Glasman. However, an error in the values as recorded by ACNET was found during this investigation. As shown in Figure \ref{fig:currentMeasurement}, ACNET records an average current of 0.04172 mA from the power supply ($\sim$40$\mu$A). 
+
+However, this number is inconsistent with the know resistance inside the TPC. The LArIAT TPC has four 1~G$\Omega$ resistors in parallel (250 M$\Omega$ equivalent) serving as the voltage divider across all 24 steps of the field cage. This means that the equivalent resistance across the whole TPC should be ~6~G$\Omega$. Thus the expected current out of the Glasman should be 
+\begin{equation}
+I_{expceted} = \frac{V_{power supply}}{R_{Total}} = \frac{23.5 kV}{6.08 G\Omega} = 3.8 \mu A \approx 4 \mu A
 \end{equation}
-\begin{equation}v_{drift} = \mu E_{field} = 1.5097 \textit{ mm/$\mu$s}
-\end{equation}
-\begin{equation}t_{drift} = \frac{\Delta x}{v_{drift}} = 311.316 \textit{ $\mu$s.}
-\end{equation}
+
+After further investigations, it was concluded that the recording of the values in ACNET were likely mis-interpreted by a factor of 10 and thus the correct current to assume from the Glasmas should be corrected to 0.00417 mA = 4$\mu$A.
 
 \begin{figure}[hp]
 \centering
@@ -35,3 +31,18 @@ The electric field, drift voltage and drift time are then calculated to be
 \label{fig:currentMeasurement}
 \end{minipage}
 \end{figure}
+
+Thus, using this corrected current, the voltage at the cathode is calculated as:
+
+\begin{equation} V_{BC}=V_{PS} - I_{corrected}*R_{eq} = -23.5kV + 0.00417mA*80M\Omega = -23.17 kV, \label{eq:VBC}
+\end{equation}
+where I is the current and R$_{eq}$ is the equivalent resistor representing the two filter pots. The electric field, drift voltage and drift time are then calculated to be
+
+\begin{equation}E_{filed} = \frac{V_{BC} - V_{shield}}{\Delta x} = 486.54 \textit{ V/cm}
+\end{equation}
+\begin{equation}v_{drift} = \mu E_{field} = 1.5097 \textit{ mm/$\mu$s}
+\end{equation}
+\begin{equation}t_{drift} = \frac{\Delta x}{v_{drift}} = 311.316 \textit{ $\mu$s.}
+\end{equation}
+
+

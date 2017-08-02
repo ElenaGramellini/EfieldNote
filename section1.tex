@@ -1,6 +1,6 @@
 \section{Introduction}\label{sec:Introduction} \label{sec:Intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The electron drift time (and by extension the drift velocity) is a fundamental parameter to the working principal of a LArTPC. By knowing the speed of the electron drift we are able to project the position of the charge back into the TPC volume enabling 3D reconstruction. The drift velocity is determined by the electric field in the drift volume, so having a good handle on the electric field is essential. In this note, we present two methods to calculate the electric using the measured detector properties such as temperature, pressure, voltage and current of the LArIAT TPC during its operation in Run-I, II, and III.
+The electron drift time (and by extension the drift velocity) is a fundamental parameter to the working principal of a LArTPC. By knowing the speed of the electron drift we are able to project the position of the charge back into the TPC volume enabling 3D reconstruction. The drift velocity is determined by the electric field in the drift volume, so having a good handle on the electric field is essential. In this note, we present two methods to calculate the electric using the measured detector properties such as temperature, pressure, voltage and current of the LArIAT TPC during its operation in Run-I and II. (A very similar calculation can be done for Run-III using slightly modified voltages)
 
 We first define some of the basic working parameters of the LArIAT experiment in Section \ref{sec:Def} and then move on showing two methods of calculating the electric field expected in the drift volume. In Section \ref{sec:elDiagram} we use the simple single line diagram of the electric circuit along with the values recorded in ACNET to calculate the voltage on the cathode. Using this voltage we then calculate the electric field, drift velocity, and drift time. In Section \ref{sec:CAMethod} we use an alternative method by identifying cathode to anode piercing tracks (tracks which cross the cathode and wire planes as they traverse the TPC) to calculate the drift time. From this drift time, the drift velocity is calculated, and finally the electric field. 
 
@@ -46,22 +46,44 @@ where where $\mu$ is the electron mobility and depends on the electric field and
 \label{fig:EV}
 \end{figure}
 
-To calculate the electric field in the S-I and I-C regions we can utilize the equation
-\begin{equation} E_{field}=\frac{\Delta V_{ab}}{\Delta x}, \label{eq:Efield}
+In order to determine the temperature inside the TPC, we utilize the measurement of the pressure in the cryostat and calculate the pressure at the center of the TPC. From this pressure we can thus calculate the temperature. The pressure at the surface of the liquid argon is maintained by the cryo-system at $\sim$20~psi as shown in Figure \ref{fig:pressure} for a period of 13 days with an average pressure of 20.0 $\pm$.0.4 psi.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.45]{./images/Pressure.png}\\
+\caption{PT219A pressure distributions for 13 days (2017/6/23 - 2017/7/5).}
+\label{fig:pressure}
+\end{figure}
+
+In order to calculate the pressure (and subsequently the temperature) in the middle of the TPC, we consider about 40 cm of argon from the ulage surface to the center of the TPC. This volume of argon raises the pressure 0.79 psi to give a pressure at the center of the TPC of 20.79 psi. According to the NIST tables, [\textcolor{red}{reference}], this corresponds to a temperature of 90.7 K. This is the temperature value we will utilize throughout this note.
+
+It is worth noting that LArIAT is equipped with three temperature probes inside the liquid argon volume. One probe at the bottom (TE213A in Figure \ref{fig:cryo}), one in the middle (TE314A in Figure \ref{fig:cryo}) and one on the top of the cryostat (TE212A in Figure \ref{fig:cryo}). These probes give a similar temperature reading to the one we just calculate, as listed in Table \ref{tab:temp}, but since these probes were never calibrated to an absolute number, we instead rely on the pressure measurement presented above.
+
+\begin{table}[h!]
+\centering
+\caption{Average temperatures measured at the top, middle and bottom in the LArIAT cryostat.}
+\label{tab:temp}
+\begin{tabular}{|c|c|c|}
+\hline
+Top Probe Temp (TE212A) & Middle Probe Temp (TE214A)   & Bottom Probe Temp (TE213A)  \\ \hline
+91.7 $\pm$ 0.7 K &  91.8 $\pm$ 0.7 K                   & 93.3 $\pm$ 2.7 K       \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.45]{./images/cryopic.png}\\
+\caption{Scheme of LArIAT cryostat and cryo probes.}
+\label{fig:cryo}
+\end{figure}
+
+Once the drift velocity is determined, the relationship between the drift time ($t_{drift}$) and the drift velocity is trivially given by
+\begin{equation}
+t_{drift} = \Delta x/v_{drift}, \label{eq:drifttime}
 \end{equation}
-where $\Delta V_{ab}$ is the voltage difference between two consecutive regions and $\Delta x$ is their spacing.
+where $\Delta x$ is the distance between the two regions (for the regions of the wire planes, this is 4~mm).
 
 Table \ref{tab:Efields} reports the values of the electric field, drift velocity and drift times for the smaller drift volumes; the next few paragraphs describe how these quantities are calculated.
-
-  
-
-The electric field is calculated using equation \ref{eq:Efield}:
-
-
-
-
-
-
 
  
 \begin{table}[]
@@ -78,52 +100,4 @@ t$_{drift}$ &                   2.31  $\mu$s      &                   2.11 $\mu$
 \end{tabular}
 \end{table}
 
-From the electric field, we calculate the drift velocity and substquently the drit time in the volumes bewteen shield and induction planes and induction and collection planes.
-The relationship between drift time and drift velocity is straightforward 
-\begin{equation}
-v_{drift} = \Delta x/t_{drift}, \label{eq:drifttime}
-\end{equation}
-but the one between  electric field and drift velocity is more complicated. The relationship between the electric field and drift velocity in LAr can be described as 
-
-
-
-
-
-
-In order to determine the temperature inside the TPC, we use the measurement of the pressure at the top of the cryostat. This pressure is maintained constant at ~20 psi at the liquid argon surface (PT219A in figure \ref{fig:cryo}). Figure \ref{fig:pressure} shows the distribution of the pressure reading for 13 days.
-The average pressure is 20.0 $\pm$ 0.4 psi,  which corresponds to argon temperature of  90.328K  according to NIST RefProp [\textcolor{red}{reference}]. In order to calculate the pressure (and subsequently the temperature) in the middle of the TPC, we consider about 40 cm of Argon from the lulage surface. This argon raises the pressure of about 0.79 psi in the middle of the TPC. A pressure of ~20.79 psi corresponds to a temperature to ~90.7 K according to NIST. We'll assume a temperature of 90.7 K for the rest of the note.
-
-It should be noted that LArIAT is equipped with three temperature probres inside the LAr: one at the bottom (TE213A in figure \ref{fig:cryo}), one in the middle (TE314A in figure \ref{fig:cryo}) and one on the top of the cryostat (TE212A in figure \ref{fig:cryo}). These probes have a similar temperature reading (see \ref{tab:temp}), but since they were not calibrated we prefer to rely on the pressure measurement.
-
- %\textcolor{red}{On average}, the three probes read as shown in table \ref{tab:temp}. 
-\begin{table}[]
-\centering
-\caption{Average temperatures measured at the top, middle and bottom in the LArIAT cryostat.}
-\label{tab:temp}
-\begin{tabular}{|c|c|c|}
-\hline
-Top Probe Temp (TE212A) & Middle Probe Temp (TE214A)   & Bottom Probe Temp (TE213A)  \\ \hline
-91.7 $\pm$ 0.7 K &  91.8 $\pm$ 0.7 K                   & 93.3 $\pm$ 2.7 K       \\ \hline
-\end{tabular}
-\end{table}
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.45]{./images/cryopic.png}\\
-\caption{Scheme of LArIAT cryostat and cryo probes.}
-\label{fig:cryo}
-\end{figure}
-
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.45]{./images/Pressure.png}\\
-\caption{PT219A pressure distributions for 13 days (2017/6/23 - 2017/7/5).}
-\label{fig:pressure}
-\end{figure}
-
-
-
-
-
+With these basic parameters established, we can now move on to calculating the electric field in the main drift region (between the cathode and the shield plane).
