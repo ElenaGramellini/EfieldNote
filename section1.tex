@@ -1,31 +1,28 @@
-\section{Introduction}\label{sec:Introduction}
+\section{Introduction}\label{sec:Introduction} \label{sec:Intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The electron drift time (and by extension the drift velocity) is a fundamental parameter to the working principal of a LArTPC. By knowing the speed of the electron drift we are able to project the position of the charge back into the TPC volume enabling 3D reconstruction. The drift velocity is determined by the electric field in the drift volume, so having a good handle on the electric field is essential. In this note, we present two methods to calculate the electric using the measured detector properties such as temperature, pressure, voltage and current of the LArIAT TPC during its operation in Run-I, II, and III.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Importance of drift velocity and electrict field determination}\label{sec:Intro}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The electron drift is the LArTPC working priciple. If we don't know the speed at which electron drift, we don't know their position on the direction of drifting, losing the 3D reconstruciton capabilities. The drift velocity determines the drift time. The more time electrons spend in the drift volume, the higher the probability they get caught in the argon electronegative impurities. This means that the drift velocity impacts the electron lifetime, which is fundamental to a proper calorimetric reconstruction. The drift velocity is determined by the electric field in the chamber. In what follows, we show (three) two methods to determine the electric field, drift velocity and drift time.
+We first define some of the basic working parameters of the LArIAT experiment in Section \ref{sec:Def} and then move on showing two methods of calculating the electric field expected in the drift volume. In Section \ref{sec:elDiagram} we use the simple single line diagram of the electric circuit along with the values recorded in ACNET to calculate the voltage on the cathode. Using this voltage we then calculate the electric field, drift velocity, and drift time. In Section \ref{sec:CAMethod} we use an alternative method by identifying cathode to anode piercing tracks (tracks which cross the cathode and wire planes as they traverse the TPC) to calculate the drift time. From this drift time, the drift velocity is calculated, and finally the electric field. 
 
-This note considers data from RunI and RunII only, since the quantites of interest for the analysis remained unchanged. The methodologies described can be applied to RunIII as well, $mutatis$ $mutandis$. 
-\textcolor{red}{BLURB ABOUT WHAT IS IN WHAT SECTION}
-
+These two methods give consistent results to one another giving us confidence that we understand the electric field present in the drift volume.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Definitions: electric field, drift velocity and drift time }\label{sec:Def}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-LArIAT has 3 drift volumes: a main one between cathode and shield plane, and two smaller ones between shield and induciton planes (SI) and between induction and collection planes (IC). Scope of this work is to measure the electric field, drift velocity and drift time in the main drift volume using data.
+As shown in Figure \ref{fig:driftregions}, the LArIAT TPC has three drift volumes, each of which has its own electric field defined in that region. The main drift volume is defined as the region between the cathode and the uninstrumented shield plane (C-S). This is the region for which the majority of this note will be focused on when calculating the electric field, drift velocity, and drift times.
 
-For the data considered, we assume the voltages applied on shield, induction and collection planes are known and constants. Their value can be found in table \ref{tab:voltages}.
-For RunI and RunII data, the spacing between both the shield and induction planes and the induction and collection planes is 4 mm. 
+The other two drift regions are those between the shield plane and the induction plane (S-I), and the region between the induction plane and the collection plane (I-C). The electric field in these regions is chosen to satisfy the charge transparency condition to allow for 100$\%$ transmission of the drifting charge from the drift region to the collection plane.
 
-Table \ref{tab:Efields} reports the values of the electric field, drift velocity and drift times for the smaller drift volumes; the next few paragraphs describe how these quantities are calculated.  
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.35]{./images/DriftRegions.png}\\
+\caption{Schematic of the three drift regions inside the LArIAT TPC. The main drift volume between the cathode and the shield plane (C-S), the region between the shield plane and the induction plane (S-I), and the region between the induction plane and the collection plane (I-C).}
+\label{fig:driftregions}
+\end{figure}
 
-The electric field is calculated using equation \ref{eq:Efield}:
+Table \ref{tab:voltages} provides the voltages applied to the shield, induction, and collection plane for Run-I, and Run-II. These voltages were changed in Run-III, but the transparency condition is was still maintained. For data taken in Run-I and Run-II the spacing between the S-I and I-C regions was a constant 4~mm.
 
-\begin{equation} E_{field}=\frac{\Delta V_{ab}}{\Delta x}, \label{eq:Efield}
-\end{equation}
-where $\Delta V_{ab}$ is the voltage difference between two consecutive anode planes and $\Delta x$ is their spacing.
-
-\begin{table}[b!]
+\begin{table}[htpb]
 \centering
 \caption{Anode planes voltages}
 \label{tab:voltages}
@@ -36,6 +33,33 @@ where $\Delta V_{ab}$ is the voltage difference between two consecutive anode pl
                               &                                 &                                 
 \end{tabular}
 \end{table}
+
+Once we have the electric field we can calculate the drift velocity ($v_{drift}$) using the relationship
+\begin{equation} v_{drift} = \mu(E_{field},T) E_{field}, \label{eq:vd}
+\end{equation}
+where where $\mu$ is the electron mobility and depends on the electric field and the temperature (T). The emperical formula for this dependency is described in ~\cite{WWW} and shown in Figure \ref{fig:EV} for several argon temperatures.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.45]{./images/Walkowiak.png}\\
+\caption{Drift velocity dependence on electric field for several temperatures. The slope of the line at any one point represents the electron mobility for that given temperature and electric field.}
+\label{fig:EV}
+\end{figure}
+
+To calculate the electric field in the S-I and I-C regions we can utilize the equation
+\begin{equation} E_{field}=\frac{\Delta V_{ab}}{\Delta x}, \label{eq:Efield}
+\end{equation}
+where $\Delta V_{ab}$ is the voltage difference between two consecutive regions and $\Delta x$ is their spacing.
+
+Table \ref{tab:Efields} reports the values of the electric field, drift velocity and drift times for the smaller drift volumes; the next few paragraphs describe how these quantities are calculated.
+
+  
+
+The electric field is calculated using equation \ref{eq:Efield}:
+
+
+
+
 
 
 
@@ -60,17 +84,10 @@ The relationship between drift time and drift velocity is straightforward
 v_{drift} = \Delta x/t_{drift}, \label{eq:drifttime}
 \end{equation}
 but the one between  electric field and drift velocity is more complicated. The relationship between the electric field and drift velocity in LAr can be described as 
-\begin{equation} v_{d} = \mu(E_{field},T) E_{field}, \label{eq:vd}
-\end{equation}
-where where $\mu$ is the electron mobility in LAr and T the temperature. The electron mobility depends on the LAr temperature and the electric field. The empitical formula for this dependency is described in ~\cite{WWW} and shown in figure \ref{fig:EV} for several argon temperatures.
 
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.45]{./images/Walkowiak.png}\\
-\caption{Drift velocity dependence on electric field for several temperatures.}
-\label{fig:EV}
-\end{figure}
+
+
 
 
 In order to determine the temperature inside the TPC, we use the measurement of the pressure at the top of the cryostat. This pressure is maintained constant at ~20 psi at the liquid argon surface (PT219A in figure \ref{fig:cryo}). Figure \ref{fig:pressure} shows the distribution of the pressure reading for 13 days.
