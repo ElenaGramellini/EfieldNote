@@ -1,17 +1,17 @@
 \section{Introduction}\label{sec:Introduction} \label{sec:Intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The electron drift time (and by extension the drift velocity) is a fundamental parameter to the working principal of a LArTPC. By knowing the speed of the electron drift we are able to project the position of the charge back into the TPC volume enabling 3D reconstruction. The drift velocity is determined by the electric field in the drift volume, so having a good handle on the electric field is essential. In this note, we present two methods to calculate the electric using the measured detector properties such as temperature, pressure, voltage and current of the LArIAT TPC during its operation in Run-I and II. (A very similar calculation can be done for Run-III using slightly modified voltages)
+The electron drift time (and by extension the drift velocity) is a fundamental parameter to the working principal of a LArTPC. By knowing the speed of the electron drift we are able to project the position of the charge back into the TPC volume, enabling 3D reconstruction. The drift velocity is determined by the electric field in the drift volume, so having a good handle on the electric field is essential. In this note we present two methods to calculate the electric using the measured detector properties such as temperature, pressure, voltage and current of the LArIAT TPC during its operation in Run-I and II. (A very similar calculation can be done for Run-III using slightly modified voltages.)
 
-We first define some of the basic working parameters of the LArIAT experiment in Section \ref{sec:Def} and then move on showing two methods of calculating the electric field expected in the drift volume. In Section \ref{sec:elDiagram} we use the simple single line diagram of the electric circuit along with the values recorded in ACNET to calculate the voltage on the cathode. Using this voltage we then calculate the electric field, drift velocity, and drift time. In Section \ref{sec:CAMethod} we use an alternative method by identifying cathode to anode piercing tracks (tracks which cross the cathode and wire planes as they traverse the TPC) to calculate the drift time. From this drift time, the drift velocity is calculated, and finally the electric field. 
+We first define some of the basic working parameters of the LArIAT experiment in Section \ref{sec:Def} and then move on showing two methods of calculating the electric field strength expected in the drift volume. In Section \ref{sec:elDiagram} we use the simplified single-line diagram of the electric circuit along with the values recorded in ACNET to calculate the voltage on the cathode. Using this voltage we then calculate the electric field strength, drift velocity, and drift time. In Section \ref{sec:CAMethod} we use an alternative method, identifying cathode-to-anode piercing tracks (tracks which cross the cathode and wire planes as they traverse the TPC) to extract the drift time. From this drift time the drift velocity is calculated, and then the electric field strength. 
 
-These two methods give consistent results to one another giving us confidence that we understand the electric field present in the drift volume.
+These two methods yield results consistent with one another, giving us confidence that we understand the strength of the electric field present in the drift volume.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Definitions: electric field, drift velocity and drift time }\label{sec:Def}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As shown in Figure \ref{fig:driftregions}, the LArIAT TPC has three drift volumes, each of which has its own electric field defined in that region. The main drift volume is defined as the region between the cathode and the uninstrumented shield plane (C-S). This is the region for which the majority of this note will be focused on when calculating the electric field, drift velocity, and drift times.
+As shown in Figure \ref{fig:driftregions}, the LArIAT TPC has three drift volumes, each of which has its own electric field value. The main drift volume is defined as the region between the cathode plane and the shield plane (C-S). Note that the shield plane wires are uninstrumented. This is the region for which the majority of this note will be focused on for calculating the electric field, drift velocity, and drift times.
 
-The other two drift regions are those between the shield plane and the induction plane (S-I), and the region between the induction plane and the collection plane (I-C). The electric field in these regions is chosen to satisfy the charge transparency condition to allow for 100$\%$ transmission of the drifting charge from the drift region to the collection plane.
+The other two drift regions are those between the shield plane and the induction plane (S-I), and between the induction plane and the collection plane (I-C). The electric field in these regions is chosen to satisfy the charge transparency condition to allow for 100$\%$ transmission of the drifting electrons through the shield and then the induction planes.
 
 \begin{figure}[htb]
 \centering
@@ -20,7 +20,7 @@ The other two drift regions are those between the shield plane and the induction
 \label{fig:driftregions}
 \end{figure}
 
-Table \ref{tab:voltages} provides the voltages applied to the shield, induction, and collection plane for Run-I, and Run-II. These voltages were changed in Run-III, but the transparency condition is was still maintained. For data taken in Run-I and Run-II the spacing between the S-I and I-C regions was a constant 4~mm.
+Table \ref{tab:voltages} provides the voltages applied to the shield, induction, and collection plane for Run-I, and Run-II. These voltages were changed in Run-III to maintain the transparency condition when the wire spacing was changed. For data taken in Run-I and Run-II the spacing between the S-I and I-C regions was a constant 4~mm.
 
 \begin{table}[htpb]
 \centering
@@ -34,10 +34,10 @@ Table \ref{tab:voltages} provides the voltages applied to the shield, induction,
 \end{tabular}
 \end{table}
 
-Once we have the electric field we can calculate the drift velocity ($v_{drift}$) using the relationship
+Once we have the electric field strength we can calculate the drift velocity ($v_{drift}$) using the relationship
 \begin{equation} v_{drift} = \mu(E_{field},T) E_{field}, \label{eq:vd}
 \end{equation}
-where where $\mu$ is the electron mobility and depends on the electric field and the temperature (T). The emperical formula for this dependency is described in ~\cite{WWW} and shown in Figure \ref{fig:EV} for several argon temperatures.
+where $\mu$ is the electron mobility, which depends on the electric field and on the temperature (T). The empirical formula for this dependency is described in ~\cite{WWW} and shown in Figure \ref{fig:EV} for several argon temperatures.
 
 \begin{figure}[htb]
 \centering
@@ -46,7 +46,7 @@ where where $\mu$ is the electron mobility and depends on the electric field and
 \label{fig:EV}
 \end{figure}
 
-In order to determine the temperature inside the TPC, we utilize the measurement of the pressure in the cryostat and calculate the pressure at the center of the TPC. From this pressure we can thus calculate the temperature. The pressure at the surface of the liquid argon is maintained by the cryo-system at $\sim$20~psi as shown in Figure \ref{fig:pressure} for a period of 13 days with an average pressure of 20.0 $\pm$.0.4 psi.
+In order to determine the temperature inside the TPC we measure the pressure in the cryostat gas volume and calculate the pressure at the center of the TPC. From this pressure and the boiling point curve of argon, we calculate the temperature. The pressure at the surface of the liquid argon is maintained by the cryosystem at $\sim$20~psi as shown in Figure \ref{fig:pressure} for a period of 13 days with an average pressure of 20.0 $\pm$.0.4 psi.
 
 \begin{figure}[htb]
 \centering
@@ -83,7 +83,7 @@ t_{drift} = \Delta x/v_{drift}, \label{eq:drifttime}
 \end{equation}
 where $\Delta x$ is the distance between the two regions (for the regions of the wire planes, this is 4~mm).
 
-Table \ref{tab:Efields} reports the values of the electric field, drift velocity and drift times for the smaller drift volumes; the next few paragraphs describe how these quantities are calculated.
+Table \ref{tab:Efields} reports the values of the electric field, drift velocity, and drift times for the smaller drift volumes. The next few paragraphs describe how these quantities are calculated.
 
  
 \begin{table}[]
