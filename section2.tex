@@ -3,18 +3,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{E field using electrical diagram}\label{sec:elDiagram}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The electric field in the LArIAT main drift volume can be determined knowing the voltage applied to the cathode, the voltage applied at the shield plane and the distance between them. We assume the distance between the cathode and the shield plane to be 470 mm and any length contraction due to the liquid argon is small ($\sim 2$mm).
+The electric field strength in the LArIAT main drift volume can be determined knowing the voltage applied to the cathode, the voltage applied at the shield plane, and the distance between them. We assume the distance between the cathode and the shield plane to be 470 mm and any length contraction due to the liquid argon is negligibly small ($\sim 2$mm).
 
-The voltage applied to the cathode can be calculated using Ohm's law on the circuit diagram shown in Figure \ref{fig:circuit}. The voltage supplied by the Glasman power supply during Run-I and Run-II was 23.5~kV. Sitting between the Glasman power supply and the cathode was a series of filter pots, each with an internal resistance of 40~M$\Omega$. 
+The voltage applied to the cathode can be calculated using Ohm's law and the circuit diagram shown in Figure \ref{fig:circuit}. The voltage supplied by the Glassman power supply during Run-I and Run-II was 23.5~kV. Between the Glassman power supply and the cathode was a set of two of filter pots for emergency power dissipation, one at each end of the feeder cable, each with an internal resistance of 40~M$\Omega$. 
 
-Thus all that is needed is the current output by the Glasman. However, an error in the values as recorded by ACNET was found during this investigation. As shown in Figure \ref{fig:currentMeasurement}, ACNET records an average current of 0.04172 mA from the power supply ($\sim$40$\mu$A). 
+Thus all that is needed to determine the electric field strength is the output current of the Glassman. However, an error in the values as recorded by Fermilab's Accelerator Controls Network (ACNET) was found during this investigation. As shown in Figure \ref{fig:currentMeasurement}, ACNET records an average current of 0.04172 mA from the power supply ($\sim$40$\mu$A).  This is now known to be unreliable, due to an uncalibrated scale factor. 
 
-However, this number is inconsistent with the know resistance inside the TPC. The LArIAT TPC has four 1~G$\Omega$ resistors in parallel (250 M$\Omega$ equivalent) serving as the voltage divider across all 24 steps of the field cage. This means that the equivalent resistance across the whole TPC should be ~6~G$\Omega$. Thus the expected current out of the Glasman should be 
+However, this number is inconsistent with the know resistance inside the TPC. The LArIAT TPC has four 1~G$\Omega$ resistors in parallel (250 M$\Omega$ equivalent) serving as the voltage divider across each of the 24 steps of the field cage. This means that the equivalent resistance across the whole TPC should be ~6~G$\Omega$. Thus the expected current out of the Glassman should be 
 \begin{equation}
-I_{expceted} = \frac{V_{power supply}}{R_{Total}} = \frac{23.5 kV}{6.08 G\Omega} = 3.8 \mu A \approx 4 \mu A
+I_{expected} = \frac{V_{power supply}}{R_{Total}} = \frac{23.5 kV}{6.08 G\Omega} = 3.8 \mu A \approx 4 \mu A
 \end{equation}
 
-After further investigations, it was concluded that the recording of the values in ACNET were likely mis-interpreted by a factor of 10 and thus the correct current to assume from the Glasmas should be corrected to 0.00417 mA = 4$\mu$A.
+After further investigation it was concluded that the recording of the values in ACNET were likely mis-calibrated by a factor of 10 and thus the correct current to assume from the Glassman should be corrected to 0.00417 mA = 4$\mu$A.
 
 \begin{figure}[hp]
 \centering
@@ -27,7 +27,7 @@ After further investigations, it was concluded that the recording of the values 
 \begin{minipage}{0.45\textwidth}
 \centering
 \includegraphics[width=3in]{images/glassman_current_20160525-30.png}
-\caption{Current reading from the glassman between May 25th and May 30th 2016 (typical Run2 conditions).}
+\caption{Current reading from the Glassman between May 25th and May 30th 2016 (typical Run2 conditions).}
 \label{fig:currentMeasurement}
 \end{minipage}
 \end{figure}
